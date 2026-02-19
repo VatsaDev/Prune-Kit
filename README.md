@@ -7,6 +7,7 @@ Features:
  - SFT recovery/perf gain
  - Full model distillation
  - Knocking out layers and testing performance
+ - Lora
 
 ## How to use
 
