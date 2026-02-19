@@ -65,5 +65,8 @@ go to `KV_cut.py`, put your model in, set the number of heads you want (I recomm
 
 the KV runs will match the rest of the recovery SFT, same principle, I rec you keeping going till you have MQA (KV=1), most models are like that now, and compared to default 8 KV for Qwen, 8x gain on mem to 1 KV head is nice.
 
+#### step 5, LoRA (not nesc)
 
+if the model is lacking something small (ex. my case was poor multilingual support), use the lora script with an exclusive dataset, currently it tunes 4M params (0.4% of the model), but it improved performance without degradation. change rank/alpha as nesc.
 
+lora FT at `lora.sh` -> produces an adapter, we dont really want the trouble of serving that at inference time, so export back to a full normal model by editing `export_lora.sh`, it does use absolute paths because thats how the adapter linked to orig_ckpt, its buggy otherwise
