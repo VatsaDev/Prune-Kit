@@ -11,11 +11,11 @@ export PYTORCH_CUDA_ALLOC_CONF='expandable_segments:True'
 export WANDB_API_KEY=your_key_here
 export WANDB_PROJECT=last_lora
 
-CHECKPOINT="checkpoints/qwen_1b_8b_large_d/v48-20260215-063905/checkpoint-1000"
-OUTPUT="checkpoints/qwen_1b_mlang"
+CHECKPOINT="checkpoints/inp"
+OUTPUT="checkpoints/out"
 
-TRAIN_D="../ani/kv_150k_data/kv_batch_0_150000/train_mlang.json" # I used the lora for multilingual support
-VAL_D="../ani/kv_150k_data/kv_batch_0_150000/val_mlang.json"
+TRAIN_D="train_mlang.json" # I used the lora for multilingual support
+VAL_D="val_mlang.json"
 
 CUDA_VISIBLE_DEVICES=0 \
 swift sft \
