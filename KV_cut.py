@@ -1,7 +1,4 @@
-# Qwen Supports GQA, which already parameterizes MQA/MHA, (Q=KV, MHA, KV=1, MQA)
-# this repo will let you cut the number of heads down to any num, always keep it to a power of 2 obv
-# Qwen starts at 8, going 8->4->1 was the most stable route for me, 
-# Kimi K2.5 has 
+# cut the number of heads down to any num
 
 import torch
 from transformers import AutoModelForVision2Seq, AutoProcessor, AutoTokenizer
@@ -9,8 +6,8 @@ import os
 
 # Config
 
-old_mod = "checkpoints/m_11T_10V/v2-20260219-130058/checkpoint-4700"
-new_mod = "checkpoints/qwen_1b_mqa_averaged"
+old_mod = "checkpoints/in_path"
+new_mod = "checkpoints/out_path"
 new_heads = 1 # mqa, start old//2 or 4
 
 def get_param_count(model):
