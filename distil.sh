@@ -3,7 +3,7 @@
 # full distillation
 # your model learning the output of the 8b RL
 
-ulimit -n 1048576 # dont remember exact cause of this one, but it used to cause bugs midrun
+ulimit -n 1048576 # dont remember exact cause of adding this one, but it used to cause bugs midrun
 
 export IMAGE_MAX_TOKEN_NUM=2048 # might increase
 
@@ -17,11 +17,11 @@ export WANDB_PROJECT=kv_distillation
 
 export SWIFT_PATCH_CONV3D=1 # speed fix
 
-STUDENT_MODEL="clean_build/checkpoints/m_11T_10V/v3-20260219-150354/checkpoint-5700" 
-TEACHER_MODEL="../models/kv_8b_rl_14k_0125/"
-TRAIN_DATASET="../ani/kv_150k_data/kv_batch_0_150000/train.json"
-VAL_DATASET="../ani/kv_150k_data/kv_batch_0_150000/val.json"
-OUTPUT_DIR="./checkpoints/qwen_1b_8b"
+STUDENT_MODEL="checkpoints/student" 
+TEACHER_MODEL="checkpoints/teacher"
+TRAIN_DATASET="train.json"
+VAL_DATASET="val.json"
+OUTPUT_DIR="checkpoints/out"
 
 # 2 GPU student VLLM
 
