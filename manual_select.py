@@ -1,14 +1,14 @@
 # manually select any layers you want to prune by index
-# should work for any model of the HF format, (ex. should work for the Kimi model), but only tested qwen, just look at config.json in kimi and change the code
-# ex Qwen-2b has 24 vis layers, 28 text layers, prune vis [0-23]*, text [0-27]*
+# should work for any model of the HF format
+# ex model has A ayers, prune range [0-(A-1)]* for all layers
 
 import torch
 from transformers import AutoModelForVision2Seq, AutoProcessor, AutoTokenizer
 
 # CONFIG
 
-model_to_prune = "../checkpoints/your_model/" # use HF format, config.json needed for code to use the model 
-out_path = "checkpoints/extended_safest", # anything works
+model_to_prune = "checkpoints/your_model/"
+out_path = "checkpoints/out", # anything works
 
 text_chop=[4, 10]
 vis_chop=[9, 10]
@@ -44,7 +44,7 @@ def prune_mod(model_id, output_path, text_remove_idx, vis_remove_idx, new_deepst
     model.config.vision_config.deepstack_visual_indexes = new_deepstack_idx
 
     if hasattr(model.config, "num_hidden_layers"):
-        model.config.num_hidden_layers = len(model.model.language_model.layers) # qwen has it twice, other models might not need this
+        model.config.num_hidden_layers = len(model.model.language_model.layers)
 
     print(f"Final Size: {get_param_count(model):.3f}B")
     print(f"Layers: {len(model.model.language_model.layers)} Text / {len(model.model.visual.blocks)} Vis")
