@@ -1,14 +1,14 @@
 #!/bin/bash
-export WANDB_PROJECT="clean_build"
-export WANDB_NAME="m_11T_10V" # change to your counts
+export WANDB_PROJECT="restore"
+export WANDB_NAME="run_name" # change to your counts
 
-MODEL_DIR="checkpoints/qwen_1b_mqa_averaged"
-OUTPUT_DIR="checkpoints/m_11T_10V"
+MODEL_DIR="checkpoints/model"
+OUTPUT_DIR="checkpoints/out"
 
 export SWIFT_PATCH_CONV3D=1
 
-TRAIN_DATASET="../../ani/kv_150k_data/kv_batch_0_150000/train.json"
-VAL_DATASET="../../ani/kv_150k_data/kv_batch_0_150000/val.json"
+TRAIN_DATASET="train.json"
+VAL_DATASET="val.json"
 
 # might try a different acc_strategy some time, also probably increase max_len later, 99% of current dataset falls under that len though
 
