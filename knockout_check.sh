@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # CONFIG
-export WANDB_PROJECT="clean_evo_prune_sN" # change N to what ever CKPT you are testing (ex. I went 2.2b->1.8b (s1), 1.8b->1.4b (s2), 1.4b->1.2b (s3), 1.2b->1b (s4))
+export WANDB_PROJECT="clean_evo_prune_sN"
 export SWIFT_PATCH_CONV3D=1 # speed fix I found
 
-BASE_CHECKPOINT="" # put your testing model here
+BASE_CHECKPOINT="checkpoints/model" # put your testing model here
 
-TRAIN_DATASET="../../ani/kv_150k_data/kv_batch_0_150000/train.json" # 90/10 val split I made, just do the same with SFT data and drop it here
-VAL_DATASET="../../ani/kv_150k_data/kv_batch_0_150000/val.json"
+TRAIN_DATASET="train.json" # 90/10 splits good
+VAL_DATASET="val.json"
 
 TEXT_TO_TEST=(1 2 3 4 5 6 7 8 9 10 11) # tests blocks 1-11, put whatever here, fair warning, in 0-N, 0 and N are a waste of time, input output layers are really well tuned and not redundant
 VIS_TO_TEST=(1 2 3 4 5 6 7 8 9 10 11)
