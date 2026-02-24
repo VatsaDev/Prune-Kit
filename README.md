@@ -71,3 +71,11 @@ the KV runs will match the rest of the recovery SFT, same principle, I rec you k
 if the model is lacking something small (ex. my case was poor multilingual support), use the lora script with an exclusive dataset, currently it tunes 4M params (0.4% of the model), but it improved performance without degradation. change rank/alpha as nesc.
 
 lora FT at `lora.sh` -> produces an adapter, we dont really want the trouble of serving that at inference time, so export back to a full normal model by editing `export_lora.sh`, it does use absolute paths because thats how the adapter linked to orig_ckpt, its buggy otherwise
+
+#### step 5, RL 
+
+All the GRPO run settings to improve the model are inside `rl_run.sh` along with all rewards I test under `plugins`
+
+Generally a good RL run had a slow but steady upward drift, pushing near the middle, I recommend using `GSPO`
+
+<img width="2409" height="923" alt="image" src="https://github.com/user-attachments/assets/b4ec7c7a-c4f5-48a1-9c77-1233d652f72d" />
